@@ -24,7 +24,7 @@ obstacle_velocity = 3
 
 # Timer properties
 timer_font = pygame.font.Font(None, 36)
-timer_value = 60  # in seconds
+timer_value = 0  # in seconds
 timer_text = timer_font.render(str(timer_value), True, (255, 255, 255))
 timer_rect = timer_text.get_rect(center=(width // 2, 20))
 
@@ -47,7 +47,7 @@ while running:
                 game_started = False
                 game_over = False
                 player_lives = 3
-                timer_value = 60
+                timer_value = 0
 
     if game_started and not game_over:
         # Handle player movement
@@ -75,12 +75,13 @@ while running:
                 obstacle_y = -obstacle_size
 
         # Update timer
-        if timer_value > 0:
-            timer_value -= 1
+        if timer_value < 30:
+            pygame.time.delay(1000)  # Delay for 1 second
+            timer_value += 1
             timer_text = timer_font.render(str(timer_value), True, (255, 255, 255))
 
         # Check for level completion
-        if timer_value == 0:
+        if timer_value == 30:
             game_over = True
 
     # Draw on the screen
