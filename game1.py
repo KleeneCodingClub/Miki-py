@@ -74,15 +74,12 @@ while running:
                 obstacle_x = random.randint(0, width - obstacle_size)
                 obstacle_y = -obstacle_size
 
-        # Update timer
+    # Update timer
+    if game_started and not game_over:
         if timer_value < 30:
             pygame.time.delay(1000)  # Delay for 1 second
             timer_value += 1
             timer_text = timer_font.render(str(timer_value), True, (255, 255, 255))
-
-        # Check for level completion
-        if timer_value == 30:
-            game_over = True
 
     # Draw on the screen
     screen.fill((0, 0, 0))  # Clear the screen
